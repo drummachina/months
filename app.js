@@ -17,12 +17,12 @@ const paramToFunction = {
     description: 'List supported options.',
     actionFunc: () => {
       
-       console.log(
+       console.log(chalk.magenta(
 'Node.js Command line app, displays months and seasons list in English and Polish language.\n\
 How to run: node app.js <param_required>, ex: node app.js m-pl\n\
 Date: 2022-11-20\n\
 Author: drummachina@gmail.com\n\
-Purpose: For months / season training, for zombolol2x\n');
+Purpose: For months / season training, for zombolol2x\n'));
 
       console.log('List of support options:');
       
@@ -30,7 +30,7 @@ Purpose: For months / season training, for zombolol2x\n');
         if (key === 'help') {
           continue;
         }
-        console.log(` ${key}: ${paramToFunction[key].description}`);
+        console.log(chalk.magenta(` ${key}: ${paramToFunction[key].description}`));
       }
       
       console.log();
