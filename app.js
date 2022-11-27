@@ -1,27 +1,7 @@
 // TODO [2022-11-20] Dodać nazwy polskich pór roku do tablicy seasonsArr
 // TODO [2022-11-20] Dodać obsługę parametru "s-pl", patrz opis parametru poniżej
 
-const monthsArr = [
-    { pl: 'Styczeń',    en: 'January'   }, // index: 0,   Zima
-    { pl: 'Luty',       en: 'February'  }, // index: 1,   Zima
-    { pl: 'Marzec'                      }, // index: 2,   Zima, Wiosna,
-    { pl: 'Kwieciń'                     }, // index: 3,   Wiosna
-    { pl: 'maj'                         }, // index: 4,   Wiosna
-    { pl: 'czerwiec'                    }, // index: 5,   Wiosna, Lato
-    {},                                    // index: 6    Lato
-    {},                                    // index: 7    Lato
-    {},                                    // index: 8    Lato, Jesień
-    {                   en: 'October'   }, // index: 9    Jesiń
-    {},                                    // index: 10   Jesiń
-    { pl: 'Grudzień'                    }  // index: 11,  Jesiń, Zima
-];
-
-const seasonsArr = [
-    { pl: 'Wiosna',     en: 'Spring', monthsArrIdxArr: [ 2, 3, 4, 5 ] },
-    {                                 monthsArrIdxArr: [ 5, 6  ] },
-    {},
-    {}
-];
+const utils = require("./utils");
 
 if (process.argv.length < 3) { // no params provided
   console.log('No params, exit.')
@@ -57,7 +37,7 @@ Purpose: For months / season training, for zombolol2x\n');
   'm-en': {
     description: 'months-english, lista miesięcy po angielsku',
     actionFunc: () => {
-      monthsArr.forEach((elem, index) => {
+      utils.monthsArr.forEach((elem, index) => {
         console.log(elem.en);
       });
     }
@@ -65,7 +45,7 @@ Purpose: For months / season training, for zombolol2x\n');
   'm-pl': {
     description: 'months-polish, lista miesięcy po polsku',
     actionFunc: () => {
-      monthsArr.forEach((elem) => {
+      utils.monthsArr.forEach((elem) => {
         console.log(elem.pl);
       });
     }
@@ -73,8 +53,8 @@ Purpose: For months / season training, for zombolol2x\n');
   'test': {
     description: 'Test action',
     actionFunc: () => {
-      console.log(`This is index: 0 - ${monthsArr[0].pl}`);
-      console.log(`This is index: 3 - ${monthsArr[3]}`);
+      console.log(`This is index: 0 - ${utils.monthsArr[0].pl}`);
+      console.log(`This is index: 3 - ${utils.monthsArr[3]}`);
     }
   }
 };
