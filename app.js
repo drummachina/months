@@ -1,10 +1,3 @@
-
-
-// 2011-05-03 - Joachim
-// 2015-02-02 - Klementyna
-// 1982-08-13 - Robert
-// 1975-05-13 - Paulina
-
 // TODO [2022-11-20] Dodać nazwy polskich pór roku do tablicy seasonsArr
 // TODO [2022-11-20] Dodać obsługę parametru "s-pl", patrz opis parametru poniżej
 
