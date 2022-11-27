@@ -32,6 +32,11 @@ const param = process.argv[2]; // only 1 param support by now
   
 switch (param) {
   
+  case 'test':
+    console.log(`This is index: 0 - ${monthsArr[0].pl}`);
+    console.log(`This is index: 3 - ${monthsArr[3]}`);
+    break;
+  
   case 'm-en': // months-english, lista miesięcy po angielsku
       monthsArr.forEach((elem, index) => {
         console.log(elem.en);
