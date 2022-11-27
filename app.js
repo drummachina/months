@@ -1,7 +1,9 @@
+import chalk from 'chalk';
+import utils from './utils.js';
+
 // TODO [2022-11-20] Dodać nazwy polskich pór roku do tablicy seasonsArr
 // TODO [2022-11-20] Dodać obsługę parametru "s-pl", patrz opis parametru poniżej
 
-const utils = require("./utils");
 
 if (process.argv.length < 3) { // no params provided
   console.log('No params, exit.')
@@ -38,7 +40,13 @@ Purpose: For months / season training, for zombolol2x\n');
     description: 'months-english, lista miesięcy po angielsku',
     actionFunc: () => {
       utils.monthsArr.forEach((elem, index) => {
-        console.log(elem.en);
+        let out;
+        if (!elem.en) {
+          out = chalk.gray(elem.en);
+        } else {
+          out = chalk.yellow(elem.en);
+        }
+        console.log(out);
       });
     }
   },
