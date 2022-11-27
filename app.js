@@ -29,25 +29,65 @@ if (process.argv.length < 3) { // no params provided
 }
 
 const param = process.argv[2]; // only 1 param support by now
-  
-switch (param) {
-  
-  case 'test':
-    console.log(`This is index: 0 - ${monthsArr[0].pl}`);
-    console.log(`This is index: 3 - ${monthsArr[3]}`);
-    break;
-  
-  case 'm-en': // months-english, lista miesięcy po angielsku
+
+const paramToFunction = {
+  'help': {
+    description: 'List supported options.',
+    actionFunc: () => {
+      
+       console.log(
+'Node.js Command line app, displays months and seasons list in English and Polish language.\n\
+How to run: node app.js <param_required>, ex: node app.js m-pl\n\
+Date: 2022-11-20\n\
+Author: drummachina@gmail.com\n\
+Purpose: For months / season training, for zombolol2x\n');
+
+      console.log('List of support options:');
+      
+      for (let key in paramToFunction) {
+        if (key === 'help') {
+          continue;
+        }
+        console.log(` ${key}: ${paramToFunction[key].description}`);
+      }
+      
+      console.log();
+    }
+  },
+  'm-en': {
+    description: 'months-english, lista miesięcy po angielsku',
+    actionFunc: () => {
       monthsArr.forEach((elem, index) => {
         console.log(elem.en);
       });
-      break;
-      
-  case 'm-pl': // months-polish, lista miesięcy po polsku
+    }
+  },
+  'm-pl': {
+    description: 'months-polish, lista miesięcy po polsku',
+    actionFunc: () => {
       monthsArr.forEach((elem) => {
         console.log(elem.pl);
       });
-      break;
+    }
+  },
+  'test': {
+    description: 'Test action',
+    actionFunc: () => {
+      console.log(`This is index: 0 - ${monthsArr[0].pl}`);
+      console.log(`This is index: 3 - ${monthsArr[3]}`);
+    }
+  }
+};
+
+if (!paramToFunction[param]) {
+  console.log(`Param: "${param}" is not recognized, exit.`);
+  process.exit();
+} else {
+  paramToFunction[param].actionFunc();
+}
+
+
+
       
   // 's-pl'         - seasons-polish, pory roku po polsku
   // 's-en'         - seasons-english, pory roku po angielsku
@@ -59,8 +99,3 @@ switch (param) {
   // 'm-summer-pl'  - months-summer-polish, miesiące lato po polsku
   // 'm-autom-pl'   - months-autom-polish, miesiące jesień po polsku
   // 'm-winter-pl'  - months-winter-polish, miesiące zima po polsku
-      
-  default:
-    console.log(`Param: "${param}" is not recognized, exit.`);
-    process.exit();
-}
