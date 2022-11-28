@@ -1,5 +1,12 @@
 import chalk from 'chalk';
-import utils from './utils.js';
+import JSON5 from 'json5';
+import { readFile } from 'fs/promises';
+const data = JSON5.parse(
+  await readFile(
+    new URL('./data.json5', import.meta.url)
+  )
+);
+// import utils from './utils.js';
 
 // TODO [2022-11-20] Dodać nazwy polskich pór roku do tablicy seasonsArr
 // TODO [2022-11-20] Dodać obsługę parametru "s-pl", patrz opis parametru poniżej
@@ -39,7 +46,7 @@ Purpose: For months / season training, for zombolol2x\n'));
   'm-en': {
     description: 'months-english, lista miesięcy po angielsku',
     actionFunc: () => {
-      utils.monthsArr.forEach((elem, index) => {
+      data.monthsArr.forEach((elem, index) => {
         let out;
         if (!elem.en) {
           out = chalk.gray(elem.en);
@@ -53,7 +60,7 @@ Purpose: For months / season training, for zombolol2x\n'));
   'm-pl': {
     description: 'months-polish, lista miesięcy po polsku',
     actionFunc: () => {
-      utils.monthsArr.forEach((elem) => {
+      data.monthsArr.forEach((elem) => {
         console.log(elem.pl);
       });
     }
@@ -61,8 +68,8 @@ Purpose: For months / season training, for zombolol2x\n'));
   'test': {
     description: 'Test action',
     actionFunc: () => {
-      console.log(`This is index: 0 - ${utils.monthsArr[0].pl}`);
-      console.log(`This is index: 3 - ${utils.monthsArr[3]}`);
+      console.log(`This is index: 0 - ${data.monthsArr[0].pl}`);
+      console.log(`This is index: 3 - ${data.monthsArr[3]}`);
     }
   }
 };
