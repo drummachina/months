@@ -13,7 +13,7 @@ const data = JSON5.parse(
 
 
 if (process.argv.length < 3) { // no params provided
-  console.log('No params, exit.')
+  console.log(chalk.red('No params, exit.'))
   process.exit();
 }
 
@@ -75,7 +75,7 @@ Purpose: For months / season training, for zombolol2x\n'));
 };
 
 if (!paramToFunction[param]) {
-  console.log(`Param: "${param}" is not recognized, exit.`);
+  console.log(chalk.red(`Param: "${param}" is not recognized, exit.`));
   process.exit();
 } else {
   paramToFunction[param].actionFunc();
