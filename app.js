@@ -14,6 +14,7 @@ if (process.argv.length < 3) { // no params provided
 }
 
 const param = process.argv[2]; // only 1 param support by now
+
 /*
 const paramToFunction = {
   'test': {
@@ -55,7 +56,6 @@ import(modulePath)
         console.log(chalk.blue('Type "node app.js help" to see available options, exit.'))
         process.exit();
     })
-
 
   // 's-pl'         - seasons-polish, pory roku po polsku
   // 's-en'         - seasons-english, pory roku po angielsku
