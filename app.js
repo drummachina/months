@@ -1,11 +1,7 @@
+#!/usr/bin/node
 import chalk from 'chalk';
-import JSON5 from 'json5';
-import { readFile } from 'fs/promises';
-const data = JSON5.parse(
-  await readFile(
-    new URL('./data.json5', import.meta.url)
-  )
-);
+import inquirer from 'inquirer';
+
 // import utils from './utils.js';
 
 // TODO [2022-11-20] Dodać nazwy polskich pór roku do tablicy seasonsArr
@@ -13,77 +9,54 @@ const data = JSON5.parse(
 
 
 if (process.argv.length < 3) { // no params provided
-  console.log(chalk.red('No params, exit.'))
+  console.log(chalk.red('No params provided.\n') + chalk.blue('Type "node app.js help" to see available options, exit.'))
   process.exit();
 }
 
 const param = process.argv[2]; // only 1 param support by now
-
+/*
 const paramToFunction = {
-  'help': {
-    description: 'List supported options.',
-    actionFunc: () => {
-      
-       console.log(chalk.magenta(
-'Node.js Command line app, displays months and seasons list in English and Polish language.\n\
-How to run: node app.js <param_required>, ex: node app.js m-pl\n\
-Date: 2022-11-20\n\
-Author: drummachina@gmail.com\n\
-Purpose: For months / season training, for zombolol2x\n'));
-
-      console.log('List of support options:');
-      
-      for (let key in paramToFunction) {
-        if (key === 'help') {
-          continue;
-        }
-        console.log(chalk.magenta(` ${key}: ${paramToFunction[key].description}`));
-      }
-      
-      console.log();
-    }
-  },
-  'm-en': {
-    description: 'months-english, lista miesięcy po angielsku',
-    actionFunc: () => {
-      data.monthsArr.forEach((elem, index) => {
-        let out;
-        if (!elem.en) {
-          out = chalk.gray(elem.en);
-        } else {
-          out = chalk.yellow(elem.en);
-        }
-        console.log(out);
-      });
-    }
-  },
-  'm-pl': {
-    description: 'months-polish, lista miesięcy po polsku',
-    actionFunc: () => {
-      data.monthsArr.forEach((elem) => {
-        console.log(elem.pl);
-      });
-    }
-  },
   'test': {
     description: 'Test action',
     actionFunc: () => {
-      console.log(`This is index: 0 - ${data.monthsArr[0].pl}`);
-      console.log(`This is index: 3 - ${data.monthsArr[3]}`);
+      // console.log(`This is index: 0 - ${data.monthsArr[0].pl}`);
+      // console.log(`This is index: 3 - ${data.monthsArr[3]}`);
+      
+      
+      inquirer
+      .prompt([
+          { name: "Czy już weekend" },
+          { name: "Czy już weekend2" }
+      ]).then((answers) => {
+        console.log(answers)
+      })
+      .catch((error) => {
+        if (error.isTtyError) {
+          console.log('a')
+          // Prompt couldn't be rendered in the current environment
+        } else {
+          console.log(`Something else went wrong`);
+          console.log(error);
+        }
+      });
+      
     }
   }
 };
+*/
 
-if (!paramToFunction[param]) {
-  console.log(chalk.red(`Param: "${param}" is not recognized, exit.`));
-  process.exit();
-} else {
-  paramToFunction[param].actionFunc();
-}
+let modulePath = `./paramToFunction/${param}.js`;
+
+import(modulePath)
+    .then(obj => {
+        obj[param].actionFunc();
+    }).catch(err => {
+        console.log(chalk.red(`Param: "${param}" is not recognized.`));
+        console.log(chalk.blue('Type "node app.js help" to see available options, exit.'))
+        process.exit();
+    })
 
 
-
-      
   // 's-pl'         - seasons-polish, pory roku po polsku
   // 's-en'         - seasons-english, pory roku po angielsku
   
