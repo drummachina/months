@@ -10,10 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.1.2",
-<<<<<<< HEAD
     "inquirer": "^9.1.4",
-=======
->>>>>>> 06a7658bac699b76e7484809d332ae76ab6e06e2
     "json5": "^2.2.1"
   },
   "type": "module"
