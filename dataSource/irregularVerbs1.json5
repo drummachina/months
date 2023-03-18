@@ -1,0 +1,9 @@
+{
+  irregularVerbs: [
+    ["make", "made", "tobić, czynić"],
+    ["meet", "met", "spotykać"],
+    ["read", "read", "czytać"],
+    ["ride", "rode", "jeździć na (czymś)"],
+    ["run", "ran", "biagać"]
+  ]
+}
